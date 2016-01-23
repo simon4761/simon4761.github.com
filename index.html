@@ -1016,8 +1016,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/05/26/post11/" itemprop="url">
-                  如何在滑动界面的过程中收起UINavigationController
+                <a class="post-title-link" href="/2015/05/26/post13/" itemprop="url">
+                  objc runtime 动态增加属性
                 </a>
               
             
@@ -1041,8 +1041,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/05/26/post11/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/post11/" itemprop="commentsCount"></span>
+                <a href="/2015/05/26/post13/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/post13/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1065,7 +1065,18 @@
       
         
           
-            <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.navigationController.hidesBarsOnSwipe = Yes</span><br></pre></td></tr></table></figure>
+            <p>objective-c中，有类别可以在不修改源码的基础上增加方法；近排在看别人的开源代码时，发现还可以动态增加属性。而且是在运行时,太牛B了。<br>使用运行时库，必须要先引入 objc/runtime.h<br>可以使用的函数如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">OBJC_EXPORT <span class="keyword">void</span> <span class="title">objc_setAssociatedObject</span><span class="params">(id object, <span class="keyword">const</span> <span class="keyword">void</span> *key, id value, objc_AssociationPolicy policy)</span></span></span><br></pre></td></tr></table></figure>
+<p>这个函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">OBJC_EXPORT id <span class="title">objc_getAssociatedObject</span><span class="params">(id object, <span class="keyword">const</span> <span class="keyword">void</span> *key)</span></span><br><span class="line">__<span class="title">OSX_AVAILABLE_STARTING</span><span class="params">(__MAC_10_6, __IPHONE_3_1)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>兄弟们，看一个类别和动态添加属性的例子：</p>
+<p>UILabel+Associate.h</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;UIKit/UIKit.h&gt;</span><br><span class="line">    </span><br><span class="line">@interface UILabel (Associate)</span><br><span class="line">    </span><br><span class="line">- (void) setFlashColor:(UIColor *) flashColor;</span><br><span class="line">    </span><br><span class="line">- (UIColor *) getFlashColor;</span><br><span class="line">    </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>UILabel+Associate.m</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="string">"UILabel+Associate.h"</span></span></span><br><span class="line"><span class="preprocessor">#import &lt;objc/runtime.h&gt;</span></span><br><span class="line">    </span><br><span class="line">@<span class="function">implementation <span class="title">UILabel</span> <span class="params">(Associate)</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">static</span> <span class="keyword">char</span> flashColorKey</span>;</span><br><span class="line">    </span><br><span class="line">- (<span class="keyword">void</span>) setFlashColor:(UIColor *) flashColor&#123;</span><br><span class="line">	objc_setAssociatedObject(self, &amp;flashColorKey, flashColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">- (UIColor *) getFlashColor&#123;</span><br><span class="line">	<span class="keyword">return</span> objc_getAssociatedObject(self, &amp;flashColorKey);</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>调用代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UILabel *lab = [[UILabel alloc] init];</span><br><span class="line">[lab setFlashColor:[UIColor redColor]];</span><br><span class="line">NSLog(@<span class="string">"%@"</span>, [lab getFlashColor]);</span><br></pre></td></tr></table></figure>
+<p>转自:<a href="http://www.cnblogs.com/luoguoqiang1985/p/3551966.html?utm_source=tuicool" target="_blank" rel="external">http://www.cnblogs.com/luoguoqiang1985/p/3551966.html?utm_source=tuicool</a></p>
 
           
         
@@ -1107,8 +1118,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/05/26/post9/" itemprop="url">
-                  查看iOS设备支持的字体
+                <a class="post-title-link" href="/2015/05/26/post4/" itemprop="url">
+                  Axure pro 7.0密钥一颗
                 </a>
               
             
@@ -1132,8 +1143,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/05/26/post9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/post9/" itemprop="commentsCount"></span>
+                <a href="/2015/05/26/post4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/post4/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1156,8 +1167,8 @@
       
         
           
-            <p>可以通过遍历UIFont中的familyNames得到所有iOS设备的字体</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (NSString *family in [UIFont familyNames]) </span><br><span class="line">&#123; </span><br><span class="line">	NSLog(@<span class="string">"%@"</span>, family); </span><br><span class="line">	<span class="keyword">for</span>(NSString *font in [UIFont fontNamesForFamilyName:family]) </span><br><span class="line">	&#123; </span><br><span class="line">		NSLog(@<span class="string">"\t%@"</span>,font); </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>Axure7用户名：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户名：aaa</span><br></pre></td></tr></table></figure></p>
+<p>Axure7密钥：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密钥：<span class="number">2</span>GQrt5XHYY7SBK/<span class="number">4</span>b22Gm4Dh8alaR0/<span class="number">0</span>k3gEN5h7FkVPIn8oG3uphlOeytIajxGU</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1183,7 +1194,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1224,7 +1235,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">54</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1238,7 +1249,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

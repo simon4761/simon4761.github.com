@@ -1,0 +1,793 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AS3," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="最近在看BitmapData这个类，对这个东西也不是很熟悉，所以在网上看了一些资料，现在把他们都整理了一下，我想通过以下这些会让大家会对BitmapData这东西有个深刻的了解，对大家的理解有所帮助。利用BitmapData的优势： 
+我们知道传统的矢量渲染模式下，任何元件的位移和变型以及任何改变显示的变化都会使得Flashplayer对其进行绘制，并渲染到显示器。（Fl9以后有所优化，但改变不了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AS3中的BitmapData的整理1">
+<meta property="og:url" content="http://www.aimeow.com/2011/06/08/post41/index.html">
+<meta property="og:site_name" content="七月流火">
+<meta property="og:description" content="最近在看BitmapData这个类，对这个东西也不是很熟悉，所以在网上看了一些资料，现在把他们都整理了一下，我想通过以下这些会让大家会对BitmapData这东西有个深刻的了解，对大家的理解有所帮助。利用BitmapData的优势： 
+我们知道传统的矢量渲染模式下，任何元件的位移和变型以及任何改变显示的变化都会使得Flashplayer对其进行绘制，并渲染到显示器。（Fl9以后有所优化，但改变不了">
+<meta property="og:updated_time" content="2016-01-23T09:28:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AS3中的BitmapData的整理1">
+<meta name="twitter:description" content="最近在看BitmapData这个类，对这个东西也不是很熟悉，所以在网上看了一些资料，现在把他们都整理了一下，我想通过以下这些会让大家会对BitmapData这东西有个深刻的了解，对大家的理解有所帮助。利用BitmapData的优势： 
+我们知道传统的矢量渲染模式下，任何元件的位移和变型以及任何改变显示的变化都会使得Flashplayer对其进行绘制，并渲染到显示器。（Fl9以后有所优化，但改变不了">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> AS3中的BitmapData的整理1 | 七月流火 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">七月流火</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">活在自己梦中</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AS3中的BitmapData的整理1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2011-06-08T02:38:53+08:00" content="2011-06-08">
+              2011-06-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2011/06/08/post41/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2011/06/08/post41/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在看BitmapData这个类，对这个东西也不是很熟悉，所以在网上看了一些资料，现在把他们都整理了一下，我想通过以下这些会让大家会对BitmapData这东西有个深刻的了解，对大家的理解有所帮助。<br>利用BitmapData的优势： </p>
+<p>我们知道传统的矢量渲染模式下，任何元件的位移和变型以及任何改变显示的变化都会使得Flashplayer对其进行绘制，并渲染到显示器。（Fl9以后有所优化，但改变不了根本）而BitmapData可以先进行像素数据的操作，操作之后在进行渲染。并且跳过FP的绘制，直接将像素数据交给显示渲染。 </p>
+<p>开发游戏的角色使用mc（影片）还是BitmapData？</p>
+<p>很多的游戏，都是使用mc的，mc的优点是很直观，所见即所得，占用内存很少，缺点是效率不高（当效率是瓶颈的时候是缺点，其他时候可能也不算）。</p>
+<p>BitmapData的优点是效率高，管理有些麻烦，占用内存高。</p>
+<p>小问题，为什么mc效率没Bitmap高呢？<br>mc中的位图在编译后，是以shape形式存在，也就是说，使用的是矢量渲染器渲染，进行位图填充，效率很低。<br>mc中的矢量图片，也是用矢量渲染器渲染，复杂的图像，非常耗cpu。<br>BitmapData的是将数据存在内存中，真正的位图渲染，效率非常高。</p>
+<p>BitmapData的理解</p>
+<p>BitmapData主要提供的是对图像的“像素级”的操作，如果你想切实感受一下，有个挺好的办法，打开Flash，然后CTRL+R导入一张图片，然后再按CTRL+B打散，这时得到的图片状态就有点BitmapData的味道了···而其他用FLASH矢量工具画出来的都可以理解为BitmapData的一种。</p>
+<p>下面再深一步说，BitmapData的名字可以拆开来看，就是Bitmap+Data，翻译成中文就是：位图数据，所以它可以看作数据储存的一种，而不是真正的显示对象，要想看到BitmapData，我们需要把Bitmapdata赋到一个Bitmap对象中，然后addChild(Bitmap),那么就能看到具体的画面了</p>
+<p>那么BitmapData的像素级操作作用在哪呢?比较大家喜欢津津乐道的就是粒子效果,作为一个需要大量计算的应用来说,1像素长宽的粒子无疑是能存在的最小的粒子；另外一个是作为数据传输,大家如果想实现上传图片或者下载图片的效果,基本的理念就是将Bitmapdata使用JPEGEncoder编码成二进制数据，把二进制发送给服务器端；第三种是滤镜视觉特效，例如一些水波划动特效；第四种是视频摄像头的视频检测；当然还有很多有趣的玩法，例如通过Bitmapdata压缩数据之类的。</p>
+<p>（注：从上面性能来看，对数据的传输，对数据的压缩，和运用的效率来看，利用BitmapData还是一种很有效的方式。）；</p>
+<p>使用Bitmap和BitmapData时很容易犯一个错误</p>
+<p>flash.display.Bitmap<br>The Bitmap class represents display objects that represent bitmap images.</p>
+<p>flash.display.BitmapData<br>The BitmapData class lets you work with the data (pixels) of a Bitmap object.</p>
+<p>由此可知Bitmap Class的主要功能是显示点阵影像，而BitmapData Class的功能主要是处理Bitmap每个像素资料<br>所以当我们要处理影像时千千万万不要对Bitmap下手，因为Bitmap的功能只能把影像的资料显示出來，而要处理影像必須先把Bitmap的次料交給BitmapData，再由BitmapData来对每个pixels处理才行，还有一个也是经常有人会发生的错误是直接把BitmapA的bitmapData Assign給BitmapB的bitmapData，当对BitmapB的BitmapData做更动时BitmapA也会跟著更动因为这两个Bitmap根本就Bindding同一个BitmapData，就像两个DataGrid Bindding同一份DataProvider的意思是一样的，当其中的DataGrid的dataProvider做修改,两个同时都会修改，所以当希望两个影像能各做各的事的话记得要再new一个新的BitmapData才行，否则只会把两个影像的资料绑死在一起。</p>
+<p>二，公共属性</p>
+<p>BitmapData的公共属性很少，只有4种，而且都属于Read-Only(只读)，只读的意思就是“只能读”（好废话），所以我们可以取出BitmapData的属性来做运算，但是却不能赋值给它们，跟只读区别的就是Read-Write（读写）。</p>
+<p>有时程序有莫名其妙的问题，可以查看帮助文档，是不是因为你尝试对只读属性进行了赋值导致的。</p>
+<p>1，height</p>
+<p>就是Bitmapdata存储像素数据的高度</p>
+<p>2，width</p>
+<p>同理，就是Bitmapdata存储数据的宽度，这里扯多一句，一般保存长宽的都是Number属性，因为长宽可能存在小数点，而有些其他的属性可能是int的，把带有小数点的值赋值给int的属性的话，会自动把小数点后面的数值去掉，造成一些莫名其妙的错误，所以写代码的时候要多注意看代码提示里的属性说明。</p>
+<p>3，transparent</p>
+<p>是一个Boolen值，表示此Bitmapdata是否支持透明像素，一般的颜色分为16位颜色0xRRGGBB和32位颜色0xAARRGGBB。其中0x是16进制数字的意思，后面的每两位都代表着0~F，16个范围，所以每个颜色通道都有16*16=256位的数值，其中32位颜色就是多了一个AA（透明度）通道。</p>
+<p>4，rect</p>
+<p>返回BiamapData所占的矩形对象（Rectangle），你可以暂时理解为一个对象，这个对象储存了x,y,width,height等数值。</p>
+<p>三，公共方法</p>
+<p>BitmapData一共有32个公共方法，当然一部分是成对出现的get/set方法，让我们来一一介绍。</p>
+<p>1，构造方法</p>
+<p>BitmapData(width:int, height:int, transparent:Boolean = true, fillColor:uint = 0xFFFFFFFF)</p>
+<p>构造方法有4个参数，其中两个必填，就是长宽，这两个值的输入保持“用多少填多少”的原则，因为Bitmapdata也是一种形式的内存开销,所以能省就省。第三个是transparent，就是是否允许透明像素，原则同上，如果能确定不用的话，最好关掉，默认为允许，第四个为填充颜色，bitmapdata既然是data,那肯定要有初始数据的存在，一开始是一些纯色的填充，默认为白色。</p>
+<p>2，应用滤镜</p>
+<p>applyFilter(sourceBitmapData:BitmapData, sourceRect:Rectangle, destPoint:Point, filter:BitmapFilter):void</p>
+<p>这个函数很有意思，在我的印象里，bitmapdata.applyFilter就是直接对bitmapdata进行一次滤镜算法，然后把其中的像素进行从新赋值，那为什么会有这么四个参数呢。</p>
+<p>我印象中的处理过程是：BMD—&gt;滤镜算法—&gt;得到的新BMD</p>
+<p>而实际上确是：</p>
+<p>Step1:</p>
+<p>sourceBitmapData—&gt;(sourceRect滤镜的作用矩形区域)—&gt;filter(滤镜)—&gt;新的BMD(长宽为作用矩形区域sourceRect的长宽)</p>
+<p>Step2:</p>
+<p>原来的BitmapData—&gt;在destPoint的x,y位置上—&gt;画上新的BMD</p>
+<p>这样一来，除了可以实现对自己实施滤镜，还有了更多的可操作性。</p>
+<p>3，复制</p>
+<p>clone():BitmapData</p>
+<p>这个与之前介绍的复杂类型一样，这里就不多说了，详情可参考之前的Matrix的clone方法介绍部分。</p>
+<p>4，变色</p>
+<p>colorTransform(rect:Rectangle, colorTransform:ColorTransform):void</p>
+<p>这个有点头疼，牵扯到ColorTransform类，也是一个大家比较陌生的类，那么这个hold一hold，大家先知道这个函数作用就是将某一rect的区域按colorTransform的定义进行变色。</p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AS3/" rel="tag">#AS3</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2010/12/09/post37/" rel="next" title="SQL SERVER中nvarchar 和 varchar 的区别">
+                <i class="fa fa-chevron-left"></i> SQL SERVER中nvarchar 和 varchar 的区别
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2011/06/08/post42/" rel="prev" title="AS3中的BitmapData的整理2">
+                AS3中的BitmapData的整理2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2011/06/08/post41/"
+           data-title="AS3中的BitmapData的整理1" data-url="http://www.aimeow.com/2011/06/08/post41/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7ktwh7.com1.z0.glb.clouddn.com/8762EAB5-EE65-4481-8667-07C2E55A9ACB.png"
+               alt="Aimeow" />
+          <p class="site-author-name" itemprop="name">Aimeow</p>
+          <p class="site-description motion-element" itemprop="description">活在自己梦中</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/simon4761" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aimeow</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"aimeow4761"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+
+</body>
+</html>

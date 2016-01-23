@@ -1,0 +1,836 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="在所有的预处理指令中，#pragma 指令可能是最复杂的了，它的作用是设定编译器的状态或者是指示编译器完成一些特定的动作。
+#pragma指令对每个编译器给出了一个方法,在保持与C和C++语言完全兼容的情况下,给出主机或操作系统专有的特征。依据定义,编译指示是机器或操作系统专有的,且对于每个编译器都是不同的。    其格式一般为: #pragma  para    其中para为参数，下面来看一些">
+<meta property="og:type" content="article">
+<meta property="og:title" content="七月流火">
+<meta property="og:url" content="http://www.aimeow.com/2011/08/31/post51/index.html">
+<meta property="og:site_name" content="七月流火">
+<meta property="og:description" content="在所有的预处理指令中，#pragma 指令可能是最复杂的了，它的作用是设定编译器的状态或者是指示编译器完成一些特定的动作。
+#pragma指令对每个编译器给出了一个方法,在保持与C和C++语言完全兼容的情况下,给出主机或操作系统专有的特征。依据定义,编译指示是机器或操作系统专有的,且对于每个编译器都是不同的。    其格式一般为: #pragma  para    其中para为参数，下面来看一些">
+<meta property="og:updated_time" content="2016-01-23T09:40:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="七月流火">
+<meta name="twitter:description" content="在所有的预处理指令中，#pragma 指令可能是最复杂的了，它的作用是设定编译器的状态或者是指示编译器完成一些特定的动作。
+#pragma指令对每个编译器给出了一个方法,在保持与C和C++语言完全兼容的情况下,给出主机或操作系统专有的特征。依据定义,编译指示是机器或操作系统专有的,且对于每个编译器都是不同的。    其格式一般为: #pragma  para    其中para为参数，下面来看一些">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title>  | 七月流火 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">七月流火</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">活在自己梦中</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2011-08-31T02:38:53+08:00" content="2011-08-31">
+              2011-08-31
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2011/08/31/post51/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2011/08/31/post51/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在所有的预处理指令中，#pragma 指令可能是最复杂的了，它的作用是设定编译器的状态或者是指示编译器完成一些特定的动作。</p>
+<p>#pragma指令对每个编译器给出了一个方法,在保持与C和C++语言完全兼容的情况下,给出主机或操作系统专有的特征。<br>依据定义,编译指示是机器或操作系统专有的,且对于每个编译器都是不同的。<br>    其格式一般为: #pragma  para<br>    其中para为参数，下面来看一些常用的参数。  </p>
+<p>(1)message 参数</p>
+<pre><code>message参数是我最喜欢的一个参数，它能够在编译信息输出窗口中输出相应的信息，
+</code></pre><p>这对于源代码信息的控制是非常重要的。其使用方法为：  </p>
+<pre><code>#pragma  message(&quot;消息文本&quot;)  
+当编译器遇到这条指令时就在编译输出窗口中将消息文本打印出来。  
+当我们在程序中定义了许多宏来控制源代码版本的时候，我们自己有可能都会忘记有没有正确的设置这些宏，
+</code></pre><p>此时我们可以用这条指令在编译的时候就进行检查。假设我们希望判断自己有没有在源代码的什么地方定义了_X86这个宏,<br>可以用下面的方法:</p>
+<pre><code>#ifdef  _X86  
+#pragma  message(&quot;_X86  macro  activated!&quot;)  
+#endif  
+我们定义了_X86这个宏以后，应用程序在编译时就会在编译输出窗口里显示&quot;_86  macro  activated!&quot;。
+</code></pre><p>我们就不会因为不记得自己定义的一些特定的宏而抓耳挠腮了。  </p>
+<p>(2)另一个使用得比较多的pragma参数是code_seg</p>
+<pre><code>格式如：  
+#pragma  code_seg( [&quot;section-name&quot; [, &quot;section-class&quot;] ] )  
+它能够设置程序中函数代码存放的代码段，当我们开发驱动程序的时候就会使用到它。  
+</code></pre><p>(3)#pragma once  (比较常用) </p>
+<pre><code>只要在头文件的最开始加入这条指令就能够保证头文件被编译一次，这条指令实际上在VC6中就已经有了，
+</code></pre><p>但是考虑到兼容性并没有太多的使用它。 </p>
+<p>(4)#pragma  hdrstop</p>
+<pre><code>表示预编译头文件到此为止，后面的头文件不进行预编译。BCB可以预编译头文件以加快链接的速度，
+</code></pre><p>但如果所有头文件都进行预编译又可能占太多磁盘空间，所以使用这个选项排除一些头文件。<br>    有时单元之间有依赖关系，比如单元A依赖单元B，所以单元B要先于单元A编译。<br>你可以用#pragma  startup指定编译优先级，如果使用了#pragma  package(smart_init)，<br>BCB就会根据优先级的大小先后编译。   </p>
+<p>(5)#pragma  resource  “*.dfm”</p>
+<pre><code>表示把*.dfm文件中的资源加入工程。*.dfm中包括窗体  
+</code></pre><p>外观的定义。   </p>
+<p>(6)#pragma  warning( disable: 4507 34; once: 4385; error: 164 )</p>
+<pre><code>等价于：  
+#pragma  warning( disable: 4507 34 )    //  不显示4507和34号警告信息  
+#pragma  warning( once: 4385 )          //  4385号警告信息仅报告一次  
+#pragma  warning( error: 164 )          //  把164号警告信息作为一个错误。 
+
+同时这个pragma  warning  也支持如下格式：  
+#pragma  warning( push [, n ] )  
+#pragma  warning( pop )  
+这里n代表一个警告等级(1---4)。  
+#pragma  warning( push )保存所有警告信息的现有的警告状态。  
+#pragma  warning( push, n )保存所有警告信息的现有的警告状态，并且把全局警告等级设定为n。    
+#pragma  warning( pop )向栈中弹出最后一个警告信息，在入栈和出栈之间所作的一切改动取消。例如：  
+#pragma  warning( push )  
+#pragma  warning( disable: 4705 )  
+#pragma  warning( disable: 4706 )  
+#pragma  warning( disable: 4707 )  
+//.......  
+#pragma  warning(  pop  )    
+在这段代码的最后，重新保存所有的警告信息(包括4705，4706和4707)。 
+</code></pre><p>(7)#pragma  comment(…) </p>
+<pre><code>该指令将一个注释记录放入一个对象文件或可执行文件中。  
+</code></pre><p>常用的lib关键字，可以帮我们连入一个库文件。如：</p>
+<pre><code>#pragma  comment(lib, &quot;comctl32.lib&quot;)
+#pragma  comment(lib, &quot;vfw32.lib&quot;)
+#pragma  comment(lib, &quot;wsock32.lib&quot;)
+</code></pre><p>每个编译程序可以用#pragma指令激活或终止该编译程序支持的一些编译功能。</p>
+<p>例如，对循环优化功能：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">pragma</span>  loop_opt(on)     <span class="comment">//  激活  </span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">pragma</span>  loop_opt(off)    <span class="comment">//  终止</span></span></span><br></pre></td></tr></table></figure></p>
+<p>有时，程序中会有些函数会使编译器发出你熟知而想忽略的警告，<br>如“Parameter  xxx  is  never  used  in  function  xxx”，可以这样：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#pragma  warn  —100         //  Turn  off  the  warning  message  for  warning  #100  </span></span><br><span class="line">int  insert_record(REC  *r)  </span><br><span class="line">&#123;  /*  <span class="keyword">function</span>  body  */  &#125;  </span><br><span class="line"><span class="comment">#pragma  warn  +100          //  Turn  the  warning  message  for  warning  #100  back  on</span></span><br></pre></td></tr></table></figure></p>
+<p>函数会产生一条有唯一特征码100的警告信息，如此可暂时终止该警告。 </p>
+<p>每个编译器对#pragma的实现不同，在一个编译器中有效在别的编译器中几乎无效。可从编译器的文档中查看。</p>
+<p>补充 —— #pragma pack 与 内存对齐问题</p>
+<pre><code>许多实际的计算机系统对基本类型数据在内存中存放的位置有限制，它们会要求这些数据的首地址的值是某个数k
+</code></pre><p>(通常它为4或8)的倍数，这就是所谓的内存对齐，而这个k则被称为该数据类型的对齐模数(alignment modulus)。</p>
+<pre><code>Win32平台下的微软C编译器(cl.exe for 80x86)在默认情况下采用如下的对齐规则: 
+任何基本数据类型T的对齐模数就是T的大小，即sizeof(T)。比如对于double类型(8字节)，
+</code></pre><p>就要求该类型数据的地址总是8的倍数，而char类型数据(1字节)则可以从任何一个地址开始。</p>
+<pre><code>Linux下的GCC奉行的是另外一套规则(在资料中查得，并未验证，如错误请指正):
+任何2字节大小(包括单字节吗?)的数据类型(比如short)的对齐模数是2，而其它所有超过2字节的数据类型
+</code></pre><p>(比如long,double)都以4为对齐模数。</p>
+<pre><code>ANSI C规定一种结构类型的大小是它所有字段的大小以及字段之间或字段尾部的填充区大小之和。
+</code></pre><p>填充区就是为了使结构体字段满足内存对齐要求而额外分配给结构体的空间。那么结构体本身有什么对齐要求吗？<br>有的，ANSI C标准规定结构体类型的对齐要求不能比它所有字段中要求最严格的那个宽松，可以更严格。</p>
+<p>如何使用c/c++中的对齐选项</p>
+<pre><code>vc6中的编译选项有 /Zp[1|2|4|8|16] ，/Zp1表示以1字节边界对齐，相应的，/Zpn表示以n字节边界对齐。
+</code></pre><p>n字节边界对齐的意思是说，一个成员的地址必须安排在成员的尺寸的整数倍地址上或者是n的整数倍地址上，取它们中的最小值。<br>也就是：<br>    min ( sizeof ( member ),  n)</p>
+<pre><code>实际上，1字节边界对齐也就表示了结构成员之间没有空洞。
+/Zpn选项是应用于整个工程的，影响所有的参与编译的结构。
+要使用这个选项，可以在vc6中打开工程属性页，c/c++页，选择Code Generation分类，在Struct member alignment可以选择。
+
+要专门针对某些结构定义使用对齐选项，可以使用#pragma pack编译指令:
+</code></pre><p>(1) #pragma  pack( [ n ] )</p>
+<pre><code>该指令指定结构和联合成员的紧凑对齐。而一个完整的转换单元的结构和联合的紧凑对齐由/Zp 选项设置。
+</code></pre><p>紧凑对齐用pack编译指示在数据说明层设置。该编译指示在其出现后的第一个结构或联合说明处生效。<br>该编译指示对定义无效。<br>    当你使用#pragma  pack ( n ) 时, 这里n 为1、2、4、8 或16。<br>    第一个结构成员之后的每个结构成员都被存储在更小的成员类型或n 字节界限内。<br>如果你使用无参量的#pragma  pack, 结构成员被紧凑为以/Zp 指定的值。该缺省/Zp 紧凑值为/Zp8 。</p>
+<p>(2) 编译器也支持以下增强型语法:</p>
+<pre><code>#pragma  pack( [ [ { push | pop } , ] [ identifier, ] ] [ n] )
+
+若不同的组件使用pack编译指示指定不同的紧凑对齐, 这个语法允许你把程序组件组合为一个单独的转换单元。
+</code></pre><p>带push参量的pack编译指示的每次出现将当前的紧凑对齐存储到一个内部编译器堆栈中。<br>    编译指示的参量表从左到右读取。如果你使用push, 则当前紧凑值被存储起来;<br>如果你给出一个n 的值, 该值将成为新的紧凑值。若你指定一个标识符, 即你选定一个名称,<br>则该标识符将和这个新的的紧凑值联系起来。</p>
+<pre><code>带一个pop参量的pack编译指示的每次出现都会检索内部编译器堆栈顶的值,并且使该值为新的紧凑对齐值。
+</code></pre><p>如果你使用pop参量且内部编译器堆栈是空的,则紧凑值为命令行给定的值, 并且将产生一个警告信息。<br>若你使用pop且指定一个n的值, 该值将成为新的紧凑值。若你使用p o p 且指定一个标识符,<br>所有存储在堆栈中的值将从栈中删除, 直到找到一个匹配的标识符, 这个与标识符相关的紧凑值也从栈中移出,<br>并且这个仅在标识符入栈之前存在的紧凑值成为新的紧凑值。如果未找到匹配的标识符,<br>将使用命令行设置的紧凑值, 并且将产生一个一级警告。缺省紧凑对齐为8 。</p>
+<p>   pack编译指示的新的增强功能让你编写头文件, 确保在遇到该头文件的前后的<br>紧凑值是一样的。</p>
+<p>(3) 栈内存对齐</p>
+<pre><code>在vc6中栈的对齐方式不受结构成员对齐选项的影响。它总是保持对齐，而且对齐在4字节边界上。
+</code></pre>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/基础/" rel="tag">#基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2011/08/26/post50/" rel="next" title="Effective C++ (第20条：尽量使用“引用常量”传参，而不是传值)">
+                <i class="fa fa-chevron-left"></i> Effective C++ (第20条：尽量使用“引用常量”传参，而不是传值)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2011/09/18/post52/" rel="prev" title="stdafx.h的作用">
+                stdafx.h的作用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2011/08/31/post51/"
+           data-title="" data-url="http://www.aimeow.com/2011/08/31/post51/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7ktwh7.com1.z0.glb.clouddn.com/8762EAB5-EE65-4481-8667-07C2E55A9ACB.png"
+               alt="Aimeow" />
+          <p class="site-author-name" itemprop="name">Aimeow</p>
+          <p class="site-description motion-element" itemprop="description">活在自己梦中</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/simon4761" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aimeow</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"aimeow4761"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+
+</body>
+</html>

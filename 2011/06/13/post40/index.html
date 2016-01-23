@@ -1,0 +1,788 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="探索," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="健身单车体感游戏设计与实现摘要
+游戏策划：
+游戏策划文案是整个游戏的总体概述，这些工作主要由策划人员完成。策划工作人员主要分类包括游戏主策划、系统策划、数值策划、关卡策划、剧情策划、脚本策划。
+游戏策划文档模板目前游戏开发策划文档都参照著名游戏设计师Marcslatzman提供的游戏策划文档模板。游戏策划文档包括标题页、目录、内容和附录。标题页包括下列信息:公司的名称于标识、游戏名称、商标、公司名">
+<meta property="og:type" content="article">
+<meta property="og:title" content="健身单车体感游戏设计与实现摘要">
+<meta property="og:url" content="http://www.aimeow.com/2011/06/13/post40/index.html">
+<meta property="og:site_name" content="七月流火">
+<meta property="og:description" content="健身单车体感游戏设计与实现摘要
+游戏策划：
+游戏策划文案是整个游戏的总体概述，这些工作主要由策划人员完成。策划工作人员主要分类包括游戏主策划、系统策划、数值策划、关卡策划、剧情策划、脚本策划。
+游戏策划文档模板目前游戏开发策划文档都参照著名游戏设计师Marcslatzman提供的游戏策划文档模板。游戏策划文档包括标题页、目录、内容和附录。标题页包括下列信息:公司的名称于标识、游戏名称、商标、公司名">
+<meta property="og:updated_time" content="2016-01-23T09:27:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="健身单车体感游戏设计与实现摘要">
+<meta name="twitter:description" content="健身单车体感游戏设计与实现摘要
+游戏策划：
+游戏策划文案是整个游戏的总体概述，这些工作主要由策划人员完成。策划工作人员主要分类包括游戏主策划、系统策划、数值策划、关卡策划、剧情策划、脚本策划。
+游戏策划文档模板目前游戏开发策划文档都参照著名游戏设计师Marcslatzman提供的游戏策划文档模板。游戏策划文档包括标题页、目录、内容和附录。标题页包括下列信息:公司的名称于标识、游戏名称、商标、公司名">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 健身单车体感游戏设计与实现摘要 | 七月流火 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">七月流火</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">活在自己梦中</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                健身单车体感游戏设计与实现摘要
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2011-06-13T02:38:53+08:00" content="2011-06-13">
+              2011-06-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2011/06/13/post40/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2011/06/13/post40/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>健身单车体感游戏设计与实现摘要</p>
+<p>游戏策划：</p>
+<p>游戏策划文案是整个游戏的总体概述，这些工作主要由策划人员完成。策划工作人员主要分类包括游戏主策划、系统策划、数值策划、关卡策划、剧情策划、脚本策划。</p>
+<p>游戏策划文档模板<br>目前游戏开发策划文档都参照著名游戏设计师Marcslatzman提供的游戏策划文档模板。游戏策划文档包括标题页、目录、内容和附录。标题页包括下列信息:公司的名称于标识、游戏名称、商标、公司名称与版权所有、作者姓名、版本日期。内容包括:设计历史、游戏概述、Ul交互设计、其他系统的设计等，下面详细介绍内容部分。</p>
+<p>(1)设计历史。这是个文档设计历程的摘要，它向读者解释在进行策划的改</p>
+<p>进过程中设法实现的是什么。</p>
+<p>(2)游戏概述。这个游戏的主题特色、游戏主要系统设计、游戏的流程。</p>
+<p> (3)Ul交互设计。这个游戏是如何进行人机交互的。</p>
+<p>(4)其他系统的设计。包括游戏的联网设计、道具设计、NPC设计、场景</p>
+<p>设计等。</p>
+<p>目前，游戏策划文档力求包含游戏中能涉及的更多内容，随着游戏设计的进步，游戏策划</p>
+<p>者逐渐在游戏策划文档中增删内容，总之游戏策划文档要适合自身的游戏，不能</p>
+<p>生搬硬套。</p>
+<p>花样玩法设计<br>花样玩法是任务关卡的一个补充玩法，是为了增强游戏的悬念性，提高挑战</p>
+<p>难度，以及增加游戏的玩法。增强游戏的奖励的诱惑，提高游戏的奖励。花样玩法功能需求，有跳台、滑雪、射击等。</p>
+<p>游戏技术：<br>在游戏制作中，各个部门严格按照游戏策划文档一步一步进行工作。游戏程序编写工作主要依靠程序员完成的。程序员岗位主要有技术监督(Direetor)、主程序员(MainProgrammer)和程序员(Programmer)。</p>
+<p>负责游戏项目开发的程序员，一般不会根据具体工作内容划分工作范围，随时都可能一人多职，除了系统研究室和声音系统制作部门较为独立，也往往同时为好几个项目服务。</p>
+<p>Torque引擎<br>此游戏基于Torque引擎开发。</p>
+<p>在游戏里面，玩家所体验到的剧情、关卡、美术、音乐、操作等内容都是由游戏的引擎直接控制的，它扮演着中场发动机的角色，把游戏中所有元素捆绑在一起，在后台指挥它们同时、有序地工作。简单地说，引擎就是“用于控制所有游戏功能的主程序，从计算碰撞、物理系统和物体的相对位置，到接受玩家的输入，以及按照正确的音量输出声音等等。”引擎具有三大特点，首先引擎最大的特点就是具有“驱动性”，即引擎仅仅在功能上支持某个方面的应用，但具体的实现细节则依赖于应用本身。其次，引擎具有“完整性”的特点，即引擎是能完整实现某个方面功能的函数集。第三，引擎还具有“独立性”的特点，即引擎可以不依赖于具体的应用而独立存在。</p>
+<p>网络通信<br>要完成多人的竞技运动，必须完成多机之间的通讯，通过TCP/IP协议进行多机间的数据传输，实现网络互动。</p>
+<p>服务器端设定地址绑定和侦听端口，等待客户端的连接。为了提高通讯的可靠性和稳定性，等待客户端连接的过程是通过多线程机制来实现的。然后，客户端发起连接，连接成功后实现点对点</p>
+<p>通讯，服务器端不断的收集客户端健身车的运动数据，然后将数据集中起来，定时发送会各个客户端。最后，所有机器中的数据完成自动更新。</p>
+<p>游戏碰撞检测<br>游戏的效果必须在一定的程度上符合客观世界的物理规模，如地心引力、加速度、摩擦力、惯性、碰撞检测等。碰撞检测是游戏引擎中不可回避的问题之一，只要场景物体移动，就必须判断是否与其他物体相接触，并给出相交部分的信息(如相交部分的面片号，物体穿刺的深度等)。</p>
+<p>碰撞检测的基本原理<br>碰撞检测的最直观的想法是对所有物体做两两相交判断，在处理复杂的游戏场景时，一个基本的策略就是快速排除明显不发生碰撞的物体，确定潜在的相交区域和相交物体对，尽可能减少进行精确求交的物体对或基本几何元素的个数。通常有两个思路。一是着眼于场景中物体之间的位置关系，快速排除明显不相交的物体对。在获得潜在可能相交的物体之后，可层次遍历物体对的预先构建的层次包围体树，递归检测各层节点包围体之间的相交情况，直到各个层次树的叶子节点，最终获取物体对的相交检测结果。二是以场景所在的空间为载体，通过对场景的规则划分，加速确定可能存在物体相交的区域。随后把潜在相交区域的子空间继续划分下去，直到找到最精细的空间层次，并取出相应的相交物体的多边形面片。在此基础上，进行精确的相交测试，获得碰撞区域的详细信息。</p>
+<p>游戏美术概述<br>游戏美术效果是游戏设计中直接展现给玩家的重要内容。在美术制作前，美术工作人员与策划协调，确定游戏的整体风格、人物和建筑的比例、游戏视角等内容，这些内容主要以游戏策划文档为基准。为了提高工作效率，美术制作的分工比较详细具体。游戏美术制作一般会分为平面组、角色组、场景组等。</p>
+<p>(1)游戏美术的平面组。主要负责游戏中的人物、道具、场景、地图的绘制</p>
+<p>工作，他们将游戏策划文档上的文字准确的变为风格的统一的原画设定。</p>
+<p>(2)游戏制作角色组。主要负责游戏角色的制作。比如:主角、NPC、怪物、宠物等等。3D制作人员根据原画用3D软件进行人物建模。游戏主角要细致刻画、包括人物的高度、正面、侧面、背面、以及服装等。3D游戏要求游戏流畅运行，要求控制模型面数和贴图大小，建模一般采用低多边形建模，能用贴图表现的尽量采用贴图来表现，根据要求面数一般在三百到一千多，贴图大多用256大小。</p>
+<p>在建模之后就是角色的动作，角色一般有行走、站立、待机、攻击、被击、死亡、</p>
+<p>社交等几个动作。动作完成后要经过反复的测试，保证每个动作之间要做到切换的时候自然流畅，比如站立和特殊站立，两个动作连接在一起要看不出跳跃，保健身单车体感游戏设计与实现持两个动作的头尾帧画面相同。</p>
+<p>(3)游戏场景组。主要负责游戏中各个场景的建造，比如地形、建筑、植被、环境等。同角色一样，场景制作首先是原画根据企划的要求做出场景设定，有建筑设定、环境气氛、细节设定。美术与策划及程序讨论沟通完善，确定最终方案后进行3D建模。3D游戏场景制作不同于ZD游戏制作，首先要制作出虚拟的真实环境，根据不同的引擎使用不同的地形编辑器，拉出三维的地形，调整天空、水、雾等环境效果，同时用3D软件制作建筑、植物等。游戏中特效，分为角色特效、战斗特效、场景特效等。在游戏美术基本完成后，所有物体导入编辑器中，调整大小位置，视整体效果加入适当的特效、增加气氛、进行游戏的综合调整，达到完善。</p>
+<p>由于游戏场景越来越复杂，为了保证场景漫游的实时性，减少系统开销。美术的开发也越来越偏向于技术化，那么就产生了基于引擎的图像化处理。</p>
+<p>游戏虚拟场景的建立<br>依据场景设计的原则，逐步建立场景，建立场景的步骤如下:</p>
+<p>(l)场景规划。首先规划建立一个什么样的虚拟场景，包括什么样的道路，建筑物，场景中车辆和行人的各种情况。</p>
+<p>(2)纹理素材的准备。纹理质量对场景的逼真度有很大的影响。</p>
+<p>(3)建立模型。</p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/探索/" rel="tag">#探索</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2011/06/13/post39/" rel="next" title="跑步机体感游戏的设计与实现">
+                <i class="fa fa-chevron-left"></i> 跑步机体感游戏的设计与实现
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2011/08/18/post54/" rel="prev" title="数据结构：顺序线性表的顺序存储结构">
+                数据结构：顺序线性表的顺序存储结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2011/06/13/post40/"
+           data-title="健身单车体感游戏设计与实现摘要" data-url="http://www.aimeow.com/2011/06/13/post40/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7ktwh7.com1.z0.glb.clouddn.com/8762EAB5-EE65-4481-8667-07C2E55A9ACB.png"
+               alt="Aimeow" />
+          <p class="site-author-name" itemprop="name">Aimeow</p>
+          <p class="site-description motion-element" itemprop="description">活在自己梦中</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/simon4761" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aimeow</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"aimeow4761"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+
+</body>
+</html>
