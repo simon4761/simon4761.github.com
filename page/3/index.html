@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -57,19 +57,15 @@
 
 
 
-<meta name="description" content="可以通过遍历UIFont中的familyNames得到所有iOS设备的字体
-12345678for (NSString *family in [UIFont familyNames]) &amp;#123; 	NSLog(@&quot;%@&quot;, family); 	for(NSString *font in [UIFont fontNamesForFamilyName:family]) 	&amp;#123; 		NSLo">
-<meta property="og:type" content="article">
-<meta property="og:title" content="查看iOS设备支持的字体">
-<meta property="og:url" content="http://www.aimeow.com/2015/05/26/post9/index.html">
+<meta name="description" content="活在自己梦中">
+<meta property="og:type" content="website">
+<meta property="og:title" content="七月流火">
+<meta property="og:url" content="http://www.aimeow.com/page/3/index.html">
 <meta property="og:site_name" content="七月流火">
-<meta property="og:description" content="可以通过遍历UIFont中的familyNames得到所有iOS设备的字体
-12345678for (NSString *family in [UIFont familyNames]) &amp;#123; 	NSLog(@&quot;%@&quot;, family); 	for(NSString *font in [UIFont fontNamesForFamilyName:family]) 	&amp;#123; 		NSLo">
-<meta property="og:updated_time" content="2016-01-22T18:49:25.000Z">
+<meta property="og:description" content="活在自己梦中">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="查看iOS设备支持的字体">
-<meta name="twitter:description" content="可以通过遍历UIFont中的familyNames得到所有iOS设备的字体
-12345678for (NSString *family in [UIFont familyNames]) &amp;#123; 	NSLog(@&quot;%@&quot;, family); 	for(NSString *font in [UIFont fontNamesForFamilyName:family]) 	&amp;#123; 		NSLo">
+<meta name="twitter:title" content="七月流火">
+<meta name="twitter:description" content="活在自己梦中">
 
 
 
@@ -87,7 +83,7 @@
   };
 </script>
 
-  <title> 查看iOS设备支持的字体 | 七月流火 </title>
+  <title> 七月流火 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -106,7 +102,9 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -205,9 +203,20 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
 
-  <div id="posts" class="posts-expand">
     
+
+    
+    
+      
+      
+
+      
+    
+
+    
+      
 
   
   
@@ -227,7 +236,10 @@
             
             
               
-                查看iOS设备支持的字体
+                
+                <a class="post-title-link" href="/2015/05/26/post2/" itemprop="url">
+                  对于UIColor的扩展
+                </a>
               
             
           </h1>
@@ -239,7 +251,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-26T02:38:53+08:00" content="2015-05-26">
+            <time itemprop="dateCreated" datetime="2015-05-26T02:38:48+08:00" content="2015-05-26">
               2015-05-26
             </time>
           </span>
@@ -250,8 +262,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/05/26/post9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/post9/" itemprop="commentsCount"></span>
+                <a href="/2015/05/26/post2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/post2/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -272,52 +284,130 @@
       
 
       
-        <p>可以通过遍历UIFont中的familyNames得到所有iOS设备的字体</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (NSString *family in [UIFont familyNames]) </span><br><span class="line">&#123; </span><br><span class="line">	NSLog(@<span class="string">"%@"</span>, family); </span><br><span class="line">	<span class="keyword">for</span>(NSString *font in [UIFont fontNamesForFamilyName:family]) </span><br><span class="line">	&#123; </span><br><span class="line">		NSLog(@<span class="string">"\t%@"</span>,font); </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          
+            <p>官方UIColor的方法中，基本上都是通过RED,GREEN,BLUE三种色值去设置一种颜色。但很多时候，我们都是通过HEX值去设置一种颜色。所以我们可以通过方法去把HEX转换成我们需要的色值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">+ (UIColor *)colorwithHexString:(NSString *)hexString alpha:(<span class="keyword">float</span>)alpha</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> [[self colorwithHexString:hexString] colorWithAlphaComponent:alpha];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (UIColor *)colorwithHexString:(NSString *)hexString</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (hexString == nil || (id)hexString == [NSNull null]) &#123;</span><br><span class="line">        <span class="keyword">return</span> nil;</span><br><span class="line">    &#125;</span><br><span class="line">    UIColor *col;</span><br><span class="line">    <span class="keyword">if</span> (![hexString hasPrefix:@<span class="string">"#"</span>]) &#123;</span><br><span class="line">        hexString = [NSString stringWithFormat:@<span class="string">"#%@"</span>, hexString];</span><br><span class="line">    &#125;</span><br><span class="line">    hexString = [hexString stringByReplacingOccurrencesOfString:@<span class="string">"#"</span></span><br><span class="line">                                                     withString:@<span class="string">"0x"</span>];</span><br><span class="line">    uint hexValue;</span><br><span class="line">    <span class="keyword">if</span> ([[NSScanner scannerWithString:hexString] scanHexInt:&amp;hexValue]) &#123;</span><br><span class="line">        col = [UIColor</span><br><span class="line">               colorWithRed:((<span class="keyword">float</span>)((hexValue &amp; <span class="number">0xFF0000</span>) &gt;&gt; <span class="number">16</span>))/<span class="number">255.0</span></span><br><span class="line">               green:((<span class="keyword">float</span>)((hexValue &amp; <span class="number">0xFF00</span>) &gt;&gt; <span class="number">8</span>))/<span class="number">255.0</span></span><br><span class="line">               blue:((<span class="keyword">float</span>)(hexValue &amp; <span class="number">0xFF</span>))/<span class="number">255.0</span></span><br><span class="line">               alpha:<span class="number">1.0f</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        col = [UIColor clearColor];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> col;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+          
+        
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
-          
-        </div>
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/05/26/post4/" rel="next" title="Axure pro 7.0密钥一颗">
-                <i class="fa fa-chevron-left"></i> Axure pro 7.0密钥一颗
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/05/26/post11/" rel="prev" title="如何在滑动界面的过程中收起UINavigationController">
-                如何在滑动界面的过程中收起UINavigationController <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+      
 
-    <div class="post-spread">
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/05/26/post1/" itemprop="url">
+                  Sublime Text3安装Package Control
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-26T02:30:55+08:00" content="2015-05-26">
+              2015-05-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/26/post1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/post1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>按Ctrl+`调出console,然后粘贴以下代码到底部命令行并回车：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os; </span><br><span class="line">pf = <span class="string">'Package Control.sublime-package'</span>;</span><br><span class="line">ipp = sublime.installed_packages_path();</span><br><span class="line">urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); </span><br><span class="line">open(os.path.join(ipp, pf), <span class="string">'wb'</span>).write(urllib.request.urlopen( <span class="string">'http://sublime.wbond.net/'</span> + pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).read())</span><br></pre></td></tr></table></figure></p>
+<p>重启Sublime Text。 如果在Perferences-&gt;package settings中看到package control这一项，则安装成功。</p>
+
+          
+        
       
     </div>
-  </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
 
           </div>
@@ -325,14 +415,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2015/05/26/post9/"
-           data-title="查看iOS设备支持的字体" data-url="http://www.aimeow.com/2015/05/26/post9/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -352,17 +434,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://7ktwh7.com1.z0.glb.clouddn.com/8762EAB5-EE65-4481-8667-07C2E55A9ACB.png"
@@ -419,23 +492,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
-          </div>
-        </section>
       
 
     </div>
@@ -517,167 +573,6 @@
 
 
   
-  
-<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    NexT.motion.middleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          NexT.utils.displaySidebar();
-        }
-      }
-    };
-  });
-</script>
-
-
 
   
 

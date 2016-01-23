@@ -241,6 +241,488 @@
             
               
                 
+                <a class="post-title-link" href="/2015/12/10/post18/" itemprop="url">
+                  XCODE提交APP加速
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-10T02:38:53+08:00" content="2015-12-10">
+              2015-12-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/10/post18/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/10/post18/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/MacOS/itms/java/lib/net.properties </p>
+<p>Change the line:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># https.proxyPort=<span class="number">443</span></span></span><br></pre></td></tr></table></figure></p>
+<p>To:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https.proxyPort=<span class="number">80</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/12/post19/" itemprop="url">
+                  iOS图片内存占用计算方式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-12T02:38:53+08:00" content="2015-09-12">
+              2015-09-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/12/post19/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/12/post19/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>鉴于iOS这边出现了因为图片分辨率导致APP崩溃的情况，写一下系统如何显示一张图片的。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">首先是图片的几种格式，</span><br><span class="line"><span class="number">1.</span>Bitmap.Config ARGB_4444：每个像素占四位，即A=<span class="number">4</span>，R=<span class="number">4</span>，G=<span class="number">4</span>，B=<span class="number">4</span>，那么一个像素点占<span class="number">4</span>+<span class="number">4</span>+<span class="number">4</span>+<span class="number">4</span>=<span class="number">16</span>位 </span><br><span class="line"><span class="number">2.</span>Bitmap.Config ARGB_8888：每个像素占四位，即A=<span class="number">8</span>，R=<span class="number">8</span>，G=<span class="number">8</span>，B=<span class="number">8</span>，那么一个像素点占<span class="number">8</span>+<span class="number">8</span>+<span class="number">8</span>+<span class="number">8</span>=<span class="number">32</span>位</span><br><span class="line"><span class="number">3.</span>Bitmap.Config RGB_565：每个像素占四位，即R=<span class="number">5</span>，G=<span class="number">6</span>，B=<span class="number">5</span>，没有透明度，那么一个像素点占<span class="number">5</span>+<span class="number">6</span>+<span class="number">5</span>=<span class="number">16</span>位</span><br><span class="line"><span class="number">4.</span>Bitmap.Config ALPHA_8：每个像素占四位，只有透明度，没有颜色。</span><br></pre></td></tr></table></figure></p>
+<p>一般情况下我们都是使用的ARGB_8888（iOS和安卓都是用这个），由此可知它是最占内存的，因为一个像素占32位，8位=1字节，所以一个像素占4字节的内存。</p>
+<p>然后是图片占内存容量计算公式： 图片所占内存大小 = 图片长度（像素） <em> 图片宽度（像素） </em> 一个像素所占内存空间（单位：字节）<br>也就是说，一张分辨率为512<em>512大小的图片，他占用的内存大小为512</em>512*4 = 1048576（字节）= 1024KB = 1MB…..</p>
+<p>再然后就是iPhone6和6p都是1G的内存，所以在iOS里面，内存是很珍贵的。。。。一般来说，为了高效的显示图片，一张图片的占用内存最好不要超过1024*1024。。</p>
+<p>PS：还有一点是比较坑爹的，就是iOS这边图片的占用内存是按照2的n次方去算的，比如说，一张220<em>220的图片，他会按照256</em>256<em>4的内存去计算。。。一张129</em>60的会按照256<em>64</em>4的方式去计算。。所以高与宽最好都接近2的n次。</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/09/post20/" itemprop="url">
+                  Carthage：去中心化的Cocoa依赖管理器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-09T02:38:53+08:00" content="2015-09-09">
+              2015-09-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/09/post20/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/09/post20/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Cocoa的依赖管理器，我们已经有了CocoaPods，非常好用，那么为什么还要创建这样一个项目呢？本文翻译自Carthage的Github的README.md，带大家来了解一下这个工具有何不同之处。<br>Carthage的目标是用最简单的方式来管理Cocoa第三方框架。<br>基本的工作流如下：<br>创建一个Cartfile，包含你希望在项目中使用的框架的列表<br>运行Carthage，将会获取列出的框架并编译它们<br>将编译完成的.framework二进制文件拖拽到你的Xcode项目当中<br>Carthage编译你的依赖，并提供框架的二进制文件，但你仍然保留对项目的结构和设置的完整控制。Carthage不会自动的修改你的项目文件或编译设置。</p>
+<h3 id="Carthage_u4E0ECocoaPods_u7684_u4E0D_u540C"><a href="#Carthage_u4E0ECocoaPods_u7684_u4E0D_u540C" class="headerlink" title="Carthage与CocoaPods的不同"></a>Carthage与CocoaPods的不同</h3><p>CocoaPods是已存在很长时间的Cocoa依赖管理器，那么为什么要创建Carthage呢？<br>首先，CocoaPods默认会自动创建并更新你的应用程序和所有依赖的Xcode workspace。Carthage使用xcodebuild来编译框架的二进制文件，但如何集成它们将交由用户自己判断。CocoaPods的方法更易于使用，但Carthage更灵活并且是非侵入性的。<br>CocoaPods的目标在它的README文件描述如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">…为提高第三方开源库的可见性和参与度，创建一个更中心化的生态系统。</span><br></pre></td></tr></table></figure></p>
+<p>与之对照，Carthage创建的是去中心化的依赖管理器。它没有总项目的列表，这能够减少维护工作并且避免任何中心化带来的问题（如中央服务器宕机）。不过，这样也有一些缺点，就是项目的发现将更困难，用户将依赖于Github的趋势页面或者类似的代码库来寻找项目。<br>CocoaPods项目同时还必须包含一个podspec文件，里面是项目的一些元数据，以及确定项目的编译方式。Carthage使用xcodebuild来编译依赖，而不是将他们集成进一个workspace，因此无需类似的设定文件。不过依赖需要包含自己的Xcode工程文件来描述如何编译。<br>最后，我们创建Carthage的原因是想要一种尽可能简单的工具——一个只关心本职工作的依赖管理器，而不是取代部分Xcode的功能，或者需要 让框架作者做一些额外的工作。CocoaPods提供的一些特性很棒，但由于附加的复杂性，它们将不会被包含在Carthage当中。</p>
+<h3 id="u5B89_u88C5Carthage"><a href="#u5B89_u88C5Carthage" class="headerlink" title="安装Carthage"></a>安装Carthage</h3><p>Carthage提供OS X平台的pkg安装文件，你可以从Github的最新release中找到，按照引导一步步安装即可。<br>如果你想安装最新的开发版本（可能存在稳定性和兼容性的问题），你只需要clone本仓库的master分支，然后运行make install.</p>
+<h3 id="u6DFB_u52A0_u6846_u67B6_u5230_u5E94_u7528_u7A0B_u5E8F"><a href="#u6DFB_u52A0_u6846_u67B6_u5230_u5E94_u7528_u7A0B_u5E8F" class="headerlink" title="添加框架到应用程序"></a>添加框架到应用程序</h3><p>安装完Carthage后，你能够使用它来添加框架到你的项目。注意Carthage只支持动态框架，而后者只存在于iOS 8以上（以及任意版本的OS X）。<br>开始使用：<br>创建一个Cartfile，将你想要使用的框架列在里面<br>运行carthage update，将获取依赖文件到一个Carthage.checkout文件夹，然后编译每个依赖<br>在你的应用程序target的“General”设置标签中的“Embedded Binaries”区域，将框架从Carthage.build文件夹拖拽进去。<br>在这个过程当中，Carthage将创建一些build artifacts，其中最重要的是Cartfile.lock文件，里面将列出每个框架的具体版本，确保你提交了这个文件到版本控制工具里面（如Git、SVN），因为每个用到项目的人都需要它来编译相同版本的框架。<br>完成上面的步骤并提交你的修改，项目的其他用户就只需要获取该仓库并执行carthage bootstrap就能使用你所添加的框架。</p>
+<h3 id="u6DFB_u52A0_u6846_u67B6_u5230_u5355_u5143_u6D4B_u8BD5_u6216_u53E6_u4E00_u4E2A_u6846_u67B6"><a href="#u6DFB_u52A0_u6846_u67B6_u5230_u5355_u5143_u6D4B_u8BD5_u6216_u53E6_u4E00_u4E2A_u6846_u67B6" class="headerlink" title="添加框架到单元测试或另一个框架"></a>添加框架到单元测试或另一个框架</h3><p>使用Carthage添加框架到任意目标的方法，和添加到应用程序差不多。主要的不同在于框架是如何设置并链接到Xcode的。<br>因为非应用程序目标没有“Embedded Binaries”设置区域，你需要将编译完成后的框架拖拽到“Link Binaries With Libraries”的区域里。<br>在某些稀有案例中，你也许会想要复制每个依赖到已编译的项目中（比如，在外部框架中嵌入依赖，或确保依赖在测试工具中正常显示）。想要达到这个目的，你需要创建一个新的“Copy Files”编译选项和“Frameworks”组，然后将框架的引用添加到里面。</p>
+<h3 id="u5347_u7EA7_u6846_u67B6"><a href="#u5347_u7EA7_u6846_u67B6" class="headerlink" title="升级框架"></a>升级框架</h3><p>如果你改动了你的Cartfile，或者你想升级到框架的最新版本（服从于你指定的需求版本），执行carthage update命令可以达到目的。</p>
+<h3 id="u8BA9_u4F60_u7684_u6846_u67B6_u652F_u6301Carthage"><a href="#u8BA9_u4F60_u7684_u6846_u67B6_u652F_u6301Carthage" class="headerlink" title="让你的框架支持Carthage"></a>让你的框架支持Carthage</h3><p>Carthage只正式支持动态框架，动态框架能够在任何版本的OS X上使用，但只能在iOS 8及以上版本使用。<br>因为Carthage拥有非中心化的包列表，以及没有项目指定的编译设置，大多数框架应该能自动编译。</p>
+<h3 id="u5206_u4EAB_u4F60_u7684Xcode_schemes"><a href="#u5206_u4EAB_u4F60_u7684Xcode_schemes" class="headerlink" title="分享你的Xcode schemes"></a>分享你的Xcode schemes</h3><p>Carthage将只从你的.xcodeproj中标记为已分享的Xcode schemes来编译。如果你想检查编译是否成功，执行carthage build –no-skip-current命令，然后检查Carthage.build文件夹。<br>如果当执行命令但有scheme没有被编译，打开Xcode并确定对应scheme被标记为“Shared”，以便Carthage能够发现它。</p>
+<h3 id="u89E3_u51B3_u7F16_u8BD1_u5931_u8D25"><a href="#u89E3_u51B3_u7F16_u8BD1_u5931_u8D25" class="headerlink" title="解决编译失败"></a>解决编译失败</h3><p>如果你在执行carthage build –no-skip-current时编译失败，尝试执行xcodebuild -scheme SCHEME -workspace WORKSPACE build 或xcodebuild -scheme SCHEME -project PROJECT build（将其中的大写单词换成你项目的对应名称），然后观察是否有相同的失败发生，这应该能生成足够的失败信息来解决问题。</p>
+<h3 id="u7A33_u5B9A_u7248_u53D1_u5E03_u7684_u6807_u7B7E"><a href="#u7A33_u5B9A_u7248_u53D1_u5E03_u7684_u6807_u7B7E" class="headerlink" title="稳定版发布的标签"></a>稳定版发布的标签</h3><p>Carthage使用语义化标签来发布稳定版本。如1.2.0，如带有字母则是不受支持的版本（如1.2-alpha-1）.</p>
+<h3 id="CarthageKit"><a href="#CarthageKit" class="headerlink" title="CarthageKit"></a>CarthageKit</h3><p>大多数carthage命令行工具的功能都封装在一个名为CarthageKit的框架中。<br>如果你希望将Carthage作为另一个工具的一部分，或者希望扩展Carthage的功能，可以看看CarthageKit的源码，检查API是否符合你的需求。</p>
+<h3 id="u6388_u6743_u534F_u8BAE"><a href="#u6388_u6743_u534F_u8BAE" class="headerlink" title="授权协议"></a>授权协议</h3><p>Carthage使用MIT开源协议授权发布。</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/07/10/post22/" itemprop="url">
+                  每个 Web 开发者都应该知道的关于 URL 编码的知识
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-10T02:38:53+08:00" content="2015-07-10">
+              2015-07-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/10/post22/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/10/post22/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>大多数人不知道”+”在路径部分是被允许的并且特指正号而不是空格。其他类似的有：<br>“?”在查询部分允许不被转义，<br>“/“在查询部分允许不被转义，<br>“=”在作为路径参数或者查询参数值以及在路径部分允许不被转义，<br>“:@-.<em>~!$&amp;’()*+,;=”等字符在路径部分允许不被转义，<br>“/?:@-.</em>~!$&amp;’()*+,;=”等字符在任何段中允许不被转义。</p>
+<p>这是一个合法的url<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//example.com/:@-._~!$&amp;'()*+,=;:@-._~!$&amp;'()*+,=:@-._~!$&amp;'()*+,==?/?:@-._~!$'()*+,;=/?:@-._~!$'()*+,;==#/?:@-._~!$&amp;'()*+,;=</span></span><br></pre></td></tr></table></figure></p>
+<p>部分                    值<br>协议                    http<br>主机                    example.com<br>路径                    /:@-.<em>~!$&amp;’()*+,=<br>路径参数名            :@-.</em>~!$&amp;’()<em>+,<br>路径参数值            :@-._~!$&amp;’()</em>+,==<br>查询参数名            /?:@-.<em>~!$’()* ,;<br>查询参数值            /?:@-.</em>~!$’()<em> ,;==<br>段                        /?:@-._~!$&amp;’()</em>+,;=</p>
+<p>参考链接：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//www.oschina.net/translate/what-every-web-developer-must-know-about-url-encoding?print</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/07/08/post21/" itemprop="url">
+                  Reveal安装设置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-08T02:38:53+08:00" content="2015-07-08">
+              2015-07-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/08/post21/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/08/post21/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Reveal下载地址：http:<span class="comment">//revealapp.com/download/</span></span><br></pre></td></tr></table></figure>
+<p>1、打开命令窗口，在根目录下创建一个.lldbinit文件。输入下列命令，后回车<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.lldbinit</span><br></pre></td></tr></table></figure></p>
+<p>2、回车后，输入下列代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">command alias reveal_load_sim expr (void*)dlopen("/Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/libReveal.dylib", 0x2);</span><br><span class="line">command alias reveal_load_dev expr (void*)dlopen([(NSString*)[(NSBundle*)[NSBundle mainBundle] pathForResource:@"libReveal" ofType:@"dylib"] cStringUsingEncoding:0x4], 0x2);</span><br><span class="line">command alias reveal_start expr (void)[(NSNotificationCenter*)[NSNotificationCenter defaultCenter] postNotificationName:@"IBARevealRequestStart" object:nil];</span><br><span class="line">command alias reveal_stop expr (void)[(NSNotificationCenter*)[NSNotificationCenter defaultCenter] postNotificationName:@"IBARevealRequestStop" object:nil];</span><br></pre></td></tr></table></figure></p>
+<p>以上是四句命令，命令的意思是，给lldb设置了4个别名，这四个别名的意义是：</p>
+<p>reveal_load_sim:模拟器加载reveal时调用的动态链接库<br>reveal_load_dev:真机加载reveal时调用的动态链接库<br>reveal_start：启动reveal的调试功能<br>reveal_stop：关闭reveal的调试功能</p>
+<p>打开工程后，在appDeleget中的didFinishLaunchingWithOptions：方法中打下断点，然后编辑他，action的值设为上面四个的任意一个，下面automatic continue after xxxxx打上勾，让程序运行时不会停在这里，至此设置结束。</p>
+<p>备注：swift项目不可用</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/06/08/post17/" itemprop="url">
                   什么是技术债务
                 </a>
@@ -299,7 +781,7 @@
 <p>Bob大叔说技术债务让人们时刻牢记保持代码的整洁，就好像一个人在背负巨大的抵押债务时需要时刻保持警醒一样。<br>他又说一旦团队决定采纳技术债务，那就意味着保持代码的整洁将变得空前的重要。如果不这样，情况很快就会变得糟糕不堪，偿还这些债务的代价也变得越来越大。</p>
 <p>Martin Fowler认为坏味道也是技术债务，只不过是另一种形式的技术债务而已。他觉得坏味道是一种不计后果（reckless）的债务，<br>相对于根据精确计算而得来的谨慎的（prudent）债务而言，坏味道会让问题变得更加严重。<br>他又加上了故意（deliberate）以及无意（inadvertent）从而将技术债务划分为四个象限。</p>
 <p>Martin通过如下示例将技术债务划分为4个象限：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>不计后果，故意的——团队没有时间做设计，仅仅给出了一个匆忙做出的方案，缺乏对质量的预见。</span><br><span class="line"><span class="number">2.</span>谨慎，故意的——尽管有很多已知的缺陷，但团队必须现在交付产品，同时对此造成的后果心中有数。</span><br><span class="line"><span class="number">3.</span>不计后果，无意的——团队压根就不知道基本的设计原则，更不用说引入的坏味道了。</span><br><span class="line"><span class="number">4.</span>谨慎，无意的——那些拥有优秀设计师的团队很容易遇到这种情况。他们交付的方案具有商业价值，但在完成方案后才明白什么才是最好的方案。</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">不计后果，故意的——团队没有时间做设计，仅仅给出了一个匆忙做出的方案，缺乏对质量的预见。</span><br><span class="line">谨慎，故意的——尽管有很多已知的缺陷，但团队必须现在交付产品，同时对此造成的后果心中有数。</span><br><span class="line">不计后果，无意的——团队压根就不知道基本的设计原则，更不用说引入的坏味道了。</span><br><span class="line">谨慎，无意的——那些拥有优秀设计师的团队很容易遇到这种情况。他们交付的方案具有商业价值，但在完成方案后才明白什么才是最好的方案。</span><br></pre></td></tr></table></figure>
 <p>综上所述，实际的项目中将不可避免地存在技术债务问题，这是无法杜绝的，但问题的关键在于千万不能引入不计后果的债务，因为它会持续不断地产生坏味道，也很难对付。</p>
 
           
@@ -441,96 +923,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/05/27/post18/" itemprop="url">
-                  A
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-27T02:38:53+08:00" content="2015-05-27">
-              2015-05-27
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/27/post18/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/27/post18/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/05/27/post15/" itemprop="url">
                   Reveal查看任意app的高级技巧
                 </a>
@@ -583,282 +975,6 @@
             <p>Reveal是一个很强大的UI分析工具，与其他几个功能相近的工具（比如PonyDebugger）相比，其最大的特点就是非常直观，用来查看app的UI布局非常方便。其常规用法是将framework集成至Xcode工程中，可参见Reveal的官网<a href="http://revealapp.com/,但我们这次讲述的却是非常规用法。" target="_blank" rel="external">http://revealapp.com/,但我们这次讲述的却是非常规用法。</a><br>在12/21的#阿里技术嘉年华#上，我给听众展示了使用Reveal查看任意app的效果，估计是当时所展示的工具中最亮眼的一个。既然如此，我就提前在这里把Reveal的这个技巧详细的列出来。<br>1、越狱设备，iPhone/iTouch/iPad都可以，iOS6以上（惊闻iOS7也已经越狱了）；<br>2、安装Reveal，Trail或正式版都可以，然后越狱设备与安装Reveal的Mac在同一wifi内。<br>3、点击菜单Help / Show Reveal Library in Finder，获取libReveal.dylib<br><img src="http://aimeow.qiniudn.com/003J6gH0zy6FcllcFF365.png" alt=""></p>
 <p>4、将libReveal.dylib上传到设备的/Library/MobileSubstrate/DynamicLibraries<br><img src="http://aimeow.qiniudn.com/003J6gH0zy6FclUuvMqa6.png" alt=""><br>5、同时编辑并上传一个libReveal.plist，格式如下：<br><img src="http://aimeow.qiniudn.com/003J6gH0zy6FcmaO2Fye8.png" alt=""><br>注意，此时是可以指定多个BundleID的，也就是说，你可以同时监控任意多的app；再扩大一步说，如果你愿意，不上传这个libReveal.plist，你可以监控所有app，只要你不觉得机器很慢。。。<br>6、re-spring或重启iOS设备，打开你想看的app，再从Reveal界面左上角选择要连接的机器，进入不同的页面之后还可以点击右上角的刷新钮来刷新监测的页面信息。<br><img src="http://aimeow.qiniudn.com/003J6gH0zy6Fcmplk8mfe.jpg" alt=""><br>以上是不写一行代码就能够查看任意app的方法，各位看别人app爽的时候，也可以摸摸脖子想想自己的app。<br>这种“高级技巧”从来没有被Reveal官方提起过，而是我们接触到Reveal之后逐步发现的。一开始的方法比较粗暴，是直接hook想看的app，把libReveal.dylib插进去；后来经过@卢明华 的进一步探索，才总结出这个更简单粗暴的方法。<br>虽然Reveal是最直观的一个工具，但是在iOS逆向这个领域，它占的比重连1/10都不到，真正的大块头都有点难啃，相信各位都是理解的。<br>最后，相信我们的书出来之后，会给朋友们更多深度撞击的感觉。</p>
 <p>该文章转自<a href="http://c.blog.sina.com.cn/profile.php?blogid=cb8a22ea89000gtw" target="_blank" rel="external">http://c.blog.sina.com.cn/profile.php?blogid=cb8a22ea89000gtw</a></p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/26/post5/" itemprop="url">
-                  Alcatraz介绍及安装
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-26T02:38:53+08:00" content="2015-05-26">
-              2015-05-26
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/26/post5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/post5/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Alcatraz is an open-source package manager for Xcode 5+. It lets you discover and install plugins, templates and color schemes without the need for manually cloning or copying files. It installs itself as a part of Xcode and it feels like home.<br>Installation<br>To install, open up your terminal and paste this:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https:<span class="comment">//raw.github.com/supermarin/Alcatraz/master/Scripts/install.sh | sh</span></span><br></pre></td></tr></table></figure>
-<p>or download the repository from Github and build it in Xcode. You’ll need to restart Xcode after the installation.<br>Alcatraz requires Xcode Command Line Tools, which can be installed in Xcode via Preferences &gt; Downloads.</p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/26/post4/" itemprop="url">
-                  Axure pro 7.0密钥一颗
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-26T02:38:53+08:00" content="2015-05-26">
-              2015-05-26
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/26/post4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/post4/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Axure7用户名：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户名：aaa</span><br></pre></td></tr></table></figure></p>
-<p>Axure7密钥：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密钥：<span class="number">2</span>GQrt5XHYY7SBK/<span class="number">4</span>b22Gm4Dh8alaR0/<span class="number">0</span>k3gEN5h7FkVPIn8oG3uphlOeytIajxGU</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/26/post10/" itemprop="url">
-                  iOS获取当前屏幕截屏
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-26T02:38:53+08:00" content="2015-05-26">
-              2015-05-26
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/26/post10/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/post10/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (UIImage *)getScreenShot &#123; </span><br><span class="line">	UIGraphicsBeginImageContext(self.view.bounds.size); </span><br><span class="line">	[self.view.layer renderInContext:UIGraphicsGetCurrentContext()]; </span><br><span class="line">	UIImage *image = UIGraphicsGetImageFromCurrentImageContext(); </span><br><span class="line">	UIGraphicsEndImageContext(); </span><br><span class="line">	<span class="keyword">return</span> image; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1062,104 +1178,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/26/post8/" itemprop="url">
-                  用GDB命令PO（print-object）打印UIView的视图层级
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-26T02:38:53+08:00" content="2015-05-26">
-              2015-05-26
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/26/post8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/post8/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>UIView有一个私有方法：recursiveDescription<br>这个方法可以显示出当前视图的详细层级，可以在代码中直接调用，也可以在GDB中调用，在GDB中调用时需要借助另一个GDB命令：print-object：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">po [self.view recursiveDescription]</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1200,7 +1224,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1214,7 +1238,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

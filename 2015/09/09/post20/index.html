@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="备用," />
 
 
 
@@ -57,16 +57,16 @@
 
 
 
-<meta name="description" content="活在自己梦中">
+<meta name="description" content="Cocoa的依赖管理器，我们已经有了CocoaPods，非常好用，那么为什么还要创建这样一个项目呢？本文翻译自Carthage的Github的README.md，带大家来了解一下这个工具有何不同之处。Carthage的目标是用最简单的方式来管理Cocoa第三方框架。基本的工作流如下：创建一个Cartfile，包含你希望在项目中使用的框架的列表运行Carthage，将会获取列出的框架并编译它们将编译">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A">
-<meta property="og:url" content="http://www.aimeow.com/2015/05/27/post18/index.html">
+<meta property="og:title" content="Carthage：去中心化的Cocoa依赖管理器">
+<meta property="og:url" content="http://www.aimeow.com/2015/09/09/post20/index.html">
 <meta property="og:site_name" content="七月流火">
-<meta property="og:description" content="活在自己梦中">
-<meta property="og:updated_time" content="2016-01-22T19:04:31.000Z">
+<meta property="og:description" content="Cocoa的依赖管理器，我们已经有了CocoaPods，非常好用，那么为什么还要创建这样一个项目呢？本文翻译自Carthage的Github的README.md，带大家来了解一下这个工具有何不同之处。Carthage的目标是用最简单的方式来管理Cocoa第三方框架。基本的工作流如下：创建一个Cartfile，包含你希望在项目中使用的框架的列表运行Carthage，将会获取列出的框架并编译它们将编译">
+<meta property="og:updated_time" content="2016-01-23T08:35:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A">
-<meta name="twitter:description" content="活在自己梦中">
+<meta name="twitter:title" content="Carthage：去中心化的Cocoa依赖管理器">
+<meta name="twitter:description" content="Cocoa的依赖管理器，我们已经有了CocoaPods，非常好用，那么为什么还要创建这样一个项目呢？本文翻译自Carthage的Github的README.md，带大家来了解一下这个工具有何不同之处。Carthage的目标是用最简单的方式来管理Cocoa第三方框架。基本的工作流如下：创建一个Cartfile，包含你希望在项目中使用的框架的列表运行Carthage，将会获取列出的框架并编译它们将编译">
 
 
 
@@ -84,7 +84,7 @@
   };
 </script>
 
-  <title> A | 七月流火 </title>
+  <title> Carthage：去中心化的Cocoa依赖管理器 | 七月流火 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -224,7 +224,7 @@
             
             
               
-                A
+                Carthage：去中心化的Cocoa依赖管理器
               
             
           </h1>
@@ -236,8 +236,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-27T02:38:53+08:00" content="2015-05-27">
-              2015-05-27
+            <time itemprop="dateCreated" datetime="2015-09-09T02:38:53+08:00" content="2015-09-09">
+              2015-09-09
             </time>
           </span>
 
@@ -247,8 +247,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/05/27/post18/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/27/post18/" itemprop="commentsCount"></span>
+                <a href="/2015/09/09/post20/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/09/post20/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -269,7 +269,20 @@
       
 
       
-        
+        <p>Cocoa的依赖管理器，我们已经有了CocoaPods，非常好用，那么为什么还要创建这样一个项目呢？本文翻译自Carthage的Github的README.md，带大家来了解一下这个工具有何不同之处。<br>Carthage的目标是用最简单的方式来管理Cocoa第三方框架。<br>基本的工作流如下：<br>创建一个Cartfile，包含你希望在项目中使用的框架的列表<br>运行Carthage，将会获取列出的框架并编译它们<br>将编译完成的.framework二进制文件拖拽到你的Xcode项目当中<br>Carthage编译你的依赖，并提供框架的二进制文件，但你仍然保留对项目的结构和设置的完整控制。Carthage不会自动的修改你的项目文件或编译设置。</p>
+<h3 id="Carthage_u4E0ECocoaPods_u7684_u4E0D_u540C"><a href="#Carthage_u4E0ECocoaPods_u7684_u4E0D_u540C" class="headerlink" title="Carthage与CocoaPods的不同"></a>Carthage与CocoaPods的不同</h3><p>CocoaPods是已存在很长时间的Cocoa依赖管理器，那么为什么要创建Carthage呢？<br>首先，CocoaPods默认会自动创建并更新你的应用程序和所有依赖的Xcode workspace。Carthage使用xcodebuild来编译框架的二进制文件，但如何集成它们将交由用户自己判断。CocoaPods的方法更易于使用，但Carthage更灵活并且是非侵入性的。<br>CocoaPods的目标在它的README文件描述如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">…为提高第三方开源库的可见性和参与度，创建一个更中心化的生态系统。</span><br></pre></td></tr></table></figure></p>
+<p>与之对照，Carthage创建的是去中心化的依赖管理器。它没有总项目的列表，这能够减少维护工作并且避免任何中心化带来的问题（如中央服务器宕机）。不过，这样也有一些缺点，就是项目的发现将更困难，用户将依赖于Github的趋势页面或者类似的代码库来寻找项目。<br>CocoaPods项目同时还必须包含一个podspec文件，里面是项目的一些元数据，以及确定项目的编译方式。Carthage使用xcodebuild来编译依赖，而不是将他们集成进一个workspace，因此无需类似的设定文件。不过依赖需要包含自己的Xcode工程文件来描述如何编译。<br>最后，我们创建Carthage的原因是想要一种尽可能简单的工具——一个只关心本职工作的依赖管理器，而不是取代部分Xcode的功能，或者需要 让框架作者做一些额外的工作。CocoaPods提供的一些特性很棒，但由于附加的复杂性，它们将不会被包含在Carthage当中。</p>
+<h3 id="u5B89_u88C5Carthage"><a href="#u5B89_u88C5Carthage" class="headerlink" title="安装Carthage"></a>安装Carthage</h3><p>Carthage提供OS X平台的pkg安装文件，你可以从Github的最新release中找到，按照引导一步步安装即可。<br>如果你想安装最新的开发版本（可能存在稳定性和兼容性的问题），你只需要clone本仓库的master分支，然后运行make install.</p>
+<h3 id="u6DFB_u52A0_u6846_u67B6_u5230_u5E94_u7528_u7A0B_u5E8F"><a href="#u6DFB_u52A0_u6846_u67B6_u5230_u5E94_u7528_u7A0B_u5E8F" class="headerlink" title="添加框架到应用程序"></a>添加框架到应用程序</h3><p>安装完Carthage后，你能够使用它来添加框架到你的项目。注意Carthage只支持动态框架，而后者只存在于iOS 8以上（以及任意版本的OS X）。<br>开始使用：<br>创建一个Cartfile，将你想要使用的框架列在里面<br>运行carthage update，将获取依赖文件到一个Carthage.checkout文件夹，然后编译每个依赖<br>在你的应用程序target的“General”设置标签中的“Embedded Binaries”区域，将框架从Carthage.build文件夹拖拽进去。<br>在这个过程当中，Carthage将创建一些build artifacts，其中最重要的是Cartfile.lock文件，里面将列出每个框架的具体版本，确保你提交了这个文件到版本控制工具里面（如Git、SVN），因为每个用到项目的人都需要它来编译相同版本的框架。<br>完成上面的步骤并提交你的修改，项目的其他用户就只需要获取该仓库并执行carthage bootstrap就能使用你所添加的框架。</p>
+<h3 id="u6DFB_u52A0_u6846_u67B6_u5230_u5355_u5143_u6D4B_u8BD5_u6216_u53E6_u4E00_u4E2A_u6846_u67B6"><a href="#u6DFB_u52A0_u6846_u67B6_u5230_u5355_u5143_u6D4B_u8BD5_u6216_u53E6_u4E00_u4E2A_u6846_u67B6" class="headerlink" title="添加框架到单元测试或另一个框架"></a>添加框架到单元测试或另一个框架</h3><p>使用Carthage添加框架到任意目标的方法，和添加到应用程序差不多。主要的不同在于框架是如何设置并链接到Xcode的。<br>因为非应用程序目标没有“Embedded Binaries”设置区域，你需要将编译完成后的框架拖拽到“Link Binaries With Libraries”的区域里。<br>在某些稀有案例中，你也许会想要复制每个依赖到已编译的项目中（比如，在外部框架中嵌入依赖，或确保依赖在测试工具中正常显示）。想要达到这个目的，你需要创建一个新的“Copy Files”编译选项和“Frameworks”组，然后将框架的引用添加到里面。</p>
+<h3 id="u5347_u7EA7_u6846_u67B6"><a href="#u5347_u7EA7_u6846_u67B6" class="headerlink" title="升级框架"></a>升级框架</h3><p>如果你改动了你的Cartfile，或者你想升级到框架的最新版本（服从于你指定的需求版本），执行carthage update命令可以达到目的。</p>
+<h3 id="u8BA9_u4F60_u7684_u6846_u67B6_u652F_u6301Carthage"><a href="#u8BA9_u4F60_u7684_u6846_u67B6_u652F_u6301Carthage" class="headerlink" title="让你的框架支持Carthage"></a>让你的框架支持Carthage</h3><p>Carthage只正式支持动态框架，动态框架能够在任何版本的OS X上使用，但只能在iOS 8及以上版本使用。<br>因为Carthage拥有非中心化的包列表，以及没有项目指定的编译设置，大多数框架应该能自动编译。</p>
+<h3 id="u5206_u4EAB_u4F60_u7684Xcode_schemes"><a href="#u5206_u4EAB_u4F60_u7684Xcode_schemes" class="headerlink" title="分享你的Xcode schemes"></a>分享你的Xcode schemes</h3><p>Carthage将只从你的.xcodeproj中标记为已分享的Xcode schemes来编译。如果你想检查编译是否成功，执行carthage build –no-skip-current命令，然后检查Carthage.build文件夹。<br>如果当执行命令但有scheme没有被编译，打开Xcode并确定对应scheme被标记为“Shared”，以便Carthage能够发现它。</p>
+<h3 id="u89E3_u51B3_u7F16_u8BD1_u5931_u8D25"><a href="#u89E3_u51B3_u7F16_u8BD1_u5931_u8D25" class="headerlink" title="解决编译失败"></a>解决编译失败</h3><p>如果你在执行carthage build –no-skip-current时编译失败，尝试执行xcodebuild -scheme SCHEME -workspace WORKSPACE build 或xcodebuild -scheme SCHEME -project PROJECT build（将其中的大写单词换成你项目的对应名称），然后观察是否有相同的失败发生，这应该能生成足够的失败信息来解决问题。</p>
+<h3 id="u7A33_u5B9A_u7248_u53D1_u5E03_u7684_u6807_u7B7E"><a href="#u7A33_u5B9A_u7248_u53D1_u5E03_u7684_u6807_u7B7E" class="headerlink" title="稳定版发布的标签"></a>稳定版发布的标签</h3><p>Carthage使用语义化标签来发布稳定版本。如1.2.0，如带有字母则是不受支持的版本（如1.2-alpha-1）.</p>
+<h3 id="CarthageKit"><a href="#CarthageKit" class="headerlink" title="CarthageKit"></a>CarthageKit</h3><p>大多数carthage命令行工具的功能都封装在一个名为CarthageKit的框架中。<br>如果你希望将Carthage作为另一个工具的一部分，或者希望扩展Carthage的功能，可以看看CarthageKit的源码，检查API是否符合你的需求。</p>
+<h3 id="u6388_u6743_u534F_u8BAE"><a href="#u6388_u6743_u534F_u8BAE" class="headerlink" title="授权协议"></a>授权协议</h3><p>Carthage使用MIT开源协议授权发布。</p>
+
       
     </div>
 
@@ -277,7 +290,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/备用/" rel="tag">#备用</a>
           
         </div>
       
@@ -286,16 +299,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/05/27/post15/" rel="next" title="Reveal查看任意app的高级技巧">
-                <i class="fa fa-chevron-left"></i> Reveal查看任意app的高级技巧
+              <a href="/2015/07/10/post22/" rel="next" title="每个 Web 开发者都应该知道的关于 URL 编码的知识">
+                <i class="fa fa-chevron-left"></i> 每个 Web 开发者都应该知道的关于 URL 编码的知识
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/05/28/post16/" rel="prev" title="id ,NSObject, id<NSObject>区别">
-                id ,NSObject, id<NSObject>区别 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/09/12/post19/" rel="prev" title="iOS图片内存占用计算方式">
+                iOS图片内存占用计算方式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -322,8 +335,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/05/27/post18/"
-           data-title="A" data-url="http://www.aimeow.com/2015/05/27/post18/">
+      <div class="ds-thread" data-thread-key="2015/09/09/post20/"
+           data-title="Carthage：去中心化的Cocoa依赖管理器" data-url="http://www.aimeow.com/2015/09/09/post20/">
       </div>
     
   </div>
@@ -368,7 +381,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -382,7 +395,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -424,7 +437,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Carthage_u4E0ECocoaPods_u7684_u4E0D_u540C"><span class="nav-number">1.</span> <span class="nav-text">Carthage与CocoaPods的不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B89_u88C5Carthage"><span class="nav-number">2.</span> <span class="nav-text">安装Carthage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6DFB_u52A0_u6846_u67B6_u5230_u5E94_u7528_u7A0B_u5E8F"><span class="nav-number">3.</span> <span class="nav-text">添加框架到应用程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6DFB_u52A0_u6846_u67B6_u5230_u5355_u5143_u6D4B_u8BD5_u6216_u53E6_u4E00_u4E2A_u6846_u67B6"><span class="nav-number">4.</span> <span class="nav-text">添加框架到单元测试或另一个框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5347_u7EA7_u6846_u67B6"><span class="nav-number">5.</span> <span class="nav-text">升级框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u8BA9_u4F60_u7684_u6846_u67B6_u652F_u6301Carthage"><span class="nav-number">6.</span> <span class="nav-text">让你的框架支持Carthage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5206_u4EAB_u4F60_u7684Xcode_schemes"><span class="nav-number">7.</span> <span class="nav-text">分享你的Xcode schemes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u89E3_u51B3_u7F16_u8BD1_u5931_u8D25"><span class="nav-number">8.</span> <span class="nav-text">解决编译失败</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u7A33_u5B9A_u7248_u53D1_u5E03_u7684_u6807_u7B7E"><span class="nav-number">9.</span> <span class="nav-text">稳定版发布的标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CarthageKit"><span class="nav-number">10.</span> <span class="nav-text">CarthageKit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6388_u6743_u534F_u8BAE"><span class="nav-number">11.</span> <span class="nav-text">授权协议</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
